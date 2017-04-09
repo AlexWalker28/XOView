@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -74,13 +75,16 @@ public class XOView extends View {
         float touchY = event.getY();
 
         if(event.getAction() == MotionEvent.ACTION_DOWN && touchX < getWidth()/3 && touchY < getHeight()/3){
-            /*invalidate();
-            drawFigure('x');*/
-            setCoordinates(0 , 0);
-        } else if(touchX < getWidth() * 0.66 && touchX > getWidth() * 0.66 && touchY < getHeight()/3){
-            setCoordinates(0, 1);
-        } else if (touchX > getWidth() * 0.66 && touchX < getHeight()/3){
-            setCoordinates(0, 2);
+            invalidate();
+            drawFigure('x');
+            setCoordinates(0, 0);
+            Log.e("Coordinates", "Coordinates are:" + getCoordinateX() + ", " + getCoordinateY());
+        } else if(touchX < getWidth() * 0.66 && touchX > getWidth()/3 && touchY < getHeight()/3){
+            setCoordinates(1, 0);
+            Log.e("Coordinates", "Coordinates are:" + getCoordinateX() + ", " + getCoordinateY());
+        } else if (touchX > getWidth() * 0.66 && touchY < getHeight()/3){
+            setCoordinates(2, 0);
+            Log.e("Coordinates", "Coordinates are:" + getCoordinateX() + ", " + getCoordinateY());
         }
         return true;
     }
@@ -98,7 +102,7 @@ public class XOView extends View {
 
 
 
-    /*private void drawFigure(char figure) {
+    private void drawFigure(char figure) {
         switch (figure){
             case 'x':
                 // draw x
@@ -113,6 +117,6 @@ public class XOView extends View {
                 break;
         }
 
-    }*/
+    }
 
 }
