@@ -74,17 +74,38 @@ public class XOView extends View {
         float touchX = event.getX();
         float touchY = event.getY();
 
-        if(event.getAction() == MotionEvent.ACTION_DOWN && touchX < getWidth()/3 && touchY < getHeight()/3){
-            invalidate();
-            drawFigure('x');
-            setCoordinates(0, 0);
-            Log.e("Coordinates", "Coordinates are:" + getCoordinateX() + ", " + getCoordinateY());
-        } else if(touchX < getWidth() * 0.66 && touchX > getWidth()/3 && touchY < getHeight()/3){
-            setCoordinates(1, 0);
-            Log.e("Coordinates", "Coordinates are:" + getCoordinateX() + ", " + getCoordinateY());
-        } else if (touchX > getWidth() * 0.66 && touchY < getHeight()/3){
-            setCoordinates(2, 0);
-            Log.e("Coordinates", "Coordinates are:" + getCoordinateX() + ", " + getCoordinateY());
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (touchX < getWidth() / 3 && touchY < getHeight() / 3) {
+/*            invalidate();
+            drawFigure('x');*/
+                setCoordinates(0, 0);
+                Log.v("Coordinates", "Coordinates are: " + "x = " + getCoordinateX() + ", " + "y = " + getCoordinateY());
+            } else if (touchX < getWidth() * 0.66 && touchX > getWidth() / 3 && touchY < getHeight() / 3) {
+                setCoordinates(1, 0);
+                Log.v("Coordinates", "Coordinates are: " + "x = " + getCoordinateX() + ", " + "y = " + getCoordinateY());
+            } else if (touchX > getWidth() * 0.66 && touchY < getHeight() / 3) {
+                setCoordinates(2, 0);
+                Log.v("Coordinates", "Coordinates are: " + "x = " + getCoordinateX() + ", " + "y = " + getCoordinateY());
+            } else if (touchX < getWidth() / 3 && touchY > getHeight() / 3 && touchY < getHeight() * 0.66) {
+                setCoordinates(0, 1);
+                Log.v("Coordinates", "Coordinates are: " + "x = " + getCoordinateX() + ", " + "y = " + getCoordinateY());
+            } else if (touchX < getWidth()*0.66 && touchX > getWidth()/3 && touchY > getHeight()/3 && touchY < getHeight()*0.66){
+                setCoordinates(1, 1);
+                Log.v("Coordinates", "Coordinates are: " + "x = " + getCoordinateX() + ", " + "y = " + getCoordinateY());
+            } else if(touchX > getWidth()*0.66 && touchY > getHeight()/3 && touchY < getHeight()*0.66){
+                setCoordinates(2, 1);
+                Log.v("Coordinates", "Coordinates are: " + "x = " + getCoordinateX() + ", " + "y = " + getCoordinateY());
+            } else if(touchX < getWidth()/3 && touchY > getHeight()*0.66){
+                setCoordinates(0, 2);
+                Log.v("Coordinates", "Coordinates are: " + "x = " + getCoordinateX() + ", " + "y = " + getCoordinateY());
+            } else if (touchX > getWidth()/3 && touchX < getWidth()*0.66 && touchY > getHeight()*0.66){
+                setCoordinates(1, 2);
+                Log.v("Coordinates", "Coordinates are: " + "x = " + getCoordinateX() + ", " + "y = " + getCoordinateY());
+            } else if (touchX > getWidth()*0.66 && touchY > getHeight()*0.66){
+                setCoordinates(2, 2);
+                Log.v("Coordinates", "Coordinates are: " + "x = " + getCoordinateX() + ", " + "y = " + getCoordinateY());
+            }
+
         }
         return true;
     }
